@@ -3,7 +3,8 @@ import { MoviesService } from '../../../core/services/movies.service';
 import { Subscription } from '../../../../../node_modules/rxjs';
 import { Movie } from '../../../core/models/movie';
 import { Route, Router } from '../../../../../node_modules/@angular/router';
-import { MessageService, MenuItem, ConfirmationService } from '../../../../../node_modules/primeng/api';
+import { MessageService, MenuItem, ConfirmationService, SortEvent } from '../../../../../node_modules/primeng/api';
+import { formatDate, customSortTable } from '../../shared/functions';
 
 @Component({
   selector: 'app-list-movies',
@@ -94,8 +95,34 @@ export class ListMoviesComponent implements OnInit {
         this.messageService.add({ severity: 'error', summary: 'Error Message', detail: error.message });
       });
   }
+  filterSubmit(event) {
+    this.loading = true;
+    if (event.releaseDateDate) {
+      event.releaseDate = formatDate(event.releaseDateDate);
+    } else {
+      event.releaseDate = '';
+    }
+    this.subscription = this.moviesServices.searchMovie(event).subscribe(data => {
+
+      const dataClone: Movie[] = [];
+      let index = 0;
+      for (const movie of data) {
+        movie.id = index;
+        index++;
+        dataClone.push(movie);
+      }
+      this.data = dataClone;
+      this.loading = false;
+    },
+      error => {
+        this.loading = false;
+        this.messageService.add({ severity: 'error', summary: 'Error Message', detail: error.message });
+      });
+  }
   ngOnInit() {
 
   }
-
+  customSort(event: SortEvent) {
+    customSortTable(event, 'DD/MM/YYYY');
+}
 }

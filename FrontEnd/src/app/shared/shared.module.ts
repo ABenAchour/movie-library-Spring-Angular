@@ -42,6 +42,7 @@ import { GrowlModule } from 'primeng/growl';
 import { ChartModule } from 'primeng/chart';
 import { LoadingComponent } from './loading/loading.component';
 import { ToastModule } from 'primeng/toast';
+import { ToolbarModule } from 'primeng/toolbar';
 @NgModule({
   imports: [
     CommonModule, ProgressSpinnerModule
@@ -51,7 +52,7 @@ import { ToastModule } from 'primeng/toast';
     MultiSelectModule, TableModule, SidebarModule, AutoCompleteModule, FieldsetModule, SplitButtonModule,
     ConfirmDialogModule, GrowlModule, SelectButtonModule, InputSwitchModule, InputTextareaModule,
     MessageModule, MenubarModule, PanelMenuModule, ChartModule, ContextMenuModule,
-    OverlayPanelModule, AccordionModule, ProgressSpinnerModule, LoadingComponent, ToastModule],
+    OverlayPanelModule, AccordionModule, ProgressSpinnerModule, LoadingComponent, ToastModule, ToolbarModule],
   declarations: [LoadingComponent]
 })
 export class SharedModule { }

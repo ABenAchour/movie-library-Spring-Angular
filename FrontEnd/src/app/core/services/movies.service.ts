@@ -33,7 +33,7 @@ export class MoviesService {
       body: movie
     };
 
-    return this.httpClient.put(`${BASE_PATH}update/${index}`, movie, httpOptions);
+    return this.httpClient.post(`${BASE_PATH}update/${index}`, movie, httpOptions);
 
   }
   addMovie( movie: Movie) {
@@ -45,6 +45,17 @@ export class MoviesService {
     };
 
     return this.httpClient.post(`${BASE_PATH}add`, movie, httpOptions);
+
+  }
+  searchMovie( movie: Movie): Observable<Movie[]> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      body: movie
+    };
+
+    return this.httpClient.post<Movie[]>(`${BASE_PATH}search`, movie, httpOptions);
 
   }
 }

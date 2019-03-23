@@ -16,15 +16,15 @@ import { MessageService, ConfirmationService } from '../../node_modules/primeng/
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
     HttpClientModule,
     CoreModule,
-    FeaturesModule
+    AppRoutingModule
+
   ],
   providers: [MoviesService, MessageService, ConfirmationService],
   bootstrap: [AppComponent]

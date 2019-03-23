@@ -19,39 +19,42 @@ export class AddMovieComponent implements OnInit, OnChanges {
   @Output() submitForm = new EventEmitter<number>();
   loading = false;
   formSubmitted = false;
-  form: FormGroup = new FormGroup(
-    {
-      title: new FormControl('', {
-        validators: [
-          Validators.required
-        ]
+  form: FormGroup;
 
-      }),
-      director: new FormControl('', {
-        validators: [
-          Validators.required
-        ]
+  initForm() {
+    this.form = new FormGroup(
+      {
+        title: new FormControl('', {
+          validators: [
+            Validators.required
+          ]
 
-      }),
-      releaseDateDate: new FormControl('', {
-        validators: [
-          Validators.required
-        ]
+        }),
+        director: new FormControl('', {
+          validators: [
+            Validators.required
+          ]
 
-      }),
-      type: new FormControl('', {
-        validators: [
-          Validators.required
-        ]
+        }),
+        releaseDateDate: new FormControl('', {
+          validators: [
+            Validators.required
+          ]
 
-      }),
-      id: new FormControl(),
+        }),
+        type: new FormControl('', {
+          validators: [
+            Validators.required
+          ]
 
-    });
+        }),
+        id: new FormControl(),
 
+      });
+  }
   constructor(private route: ActivatedRoute, private moviesServices: MoviesService, private messageService: MessageService) {
 
-
+    this.initForm();
   }
 
   save() {
@@ -65,6 +68,8 @@ export class AddMovieComponent implements OnInit, OnChanges {
         switchMap(paramMap => this.moviesServices.addMovie(this.movie))).subscribe(data => {
           this.loading = false;
           this.submitForm.emit(1);
+          this.initForm();
+          this.formSubmitted = false;
         },
           error => {
             this.loading = false;

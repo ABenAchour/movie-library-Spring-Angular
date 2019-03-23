@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { MoviesModule } from './movies/movies.module';
 
 const routes: Routes = [
-  { path: 'movies', loadChildren: () => MoviesModule },
+  { path: 'movies', loadChildren: './movies/movies.module#MoviesModule' },
   { path: '', component: HomeComponent }
 ];
 

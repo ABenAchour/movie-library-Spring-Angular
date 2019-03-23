@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { FeaturesModule } from './features/features.module';
 
 const routes: Routes = [
-  { path: '', loadChildren: () => FeaturesModule }
+  { path: '', loadChildren: './features/features.module#FeaturesModule' }
 ];
 
 @NgModule({

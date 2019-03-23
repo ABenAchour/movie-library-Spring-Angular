@@ -1,13 +1,17 @@
+<br><h2>Search Movies</h2>
+<br>
 
-<app-filter-movies></app-filter-movies>
-<p-table [contextMenu]="cm" [(contextMenuSelection)]="selectedMovie" [columns]="cols" [value]="data" selectionMode="single"  (onRowSelect)="onRowSelect($event)" [(selection)]="selectedMovie"  dataKey="title" >
+<app-filter-movies (movieEmitter)="filterSubmit($event)"></app-filter-movies>
+<br>
+<p-table [contextMenu]="cm" [(contextMenuSelection)]="selectedMovie"  (sortFunction)="customSort($event)" [customSort]="true" [columns]="cols" [value]="data" selectionMode="single"  (onRowSelect)="onRowSelect($event)" [(selection)]="selectedMovie"  dataKey="title" >
   <ng-template pTemplate="caption">
     List of Movies
 </ng-template>
   <ng-template pTemplate="header" let-columns>
       <tr>
-          <th  scope="col" *ngFor="let col of columns">
+          <th *ngFor="let col of columns" [pSortableColumn]="col.field">
               {{col.header}}
+              <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
           </th>
       </tr>
   </ng-template>
