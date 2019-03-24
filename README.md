@@ -6,7 +6,7 @@
 ![Alt text](Capture4.PNG "Add Movies")
 
 
-This project contains a  front End Angular Application
+This project contains a  front End Angular Application we can search movies by filter ,add ,update and Delete 
 
 The idea is to create a responsive front-end that consumes a RESTful web service that we will create. Users will be able to create their movies (or select movies if they already exist in the Json File ).
 
